@@ -82,9 +82,11 @@ const Container = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: 38px minmax(0, 1fr);
-`
+  overflow: hidden;
+`;
 
 const Main = styled.div`
   display: grid;
   grid-template-columns: 260px auto;
+  grid-template-rows: 100%;
 `

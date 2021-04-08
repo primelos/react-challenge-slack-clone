@@ -74,8 +74,9 @@ function Chat({ user }) {
 export default Chat
 
 const Container = styled.div`
-    display: grid;
-    grid-template-rows: 64px auto min-content;
-    min-height: 0;
-`
+  display: grid;
+  grid-template-rows: 64px auto min-content;
+  min-height: 0;
+  overflow-y: scroll;
+`;
 

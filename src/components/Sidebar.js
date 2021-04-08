@@ -37,29 +37,31 @@ function Sidebar({ rooms }) {
           <AddCircleOutlineIcon />
         </NewMessage>
       </WorkspaceContainer>
-      <MainChannels>
-        {sidebarItemsData.map((item, id) => (
-          <MainChannelItem key={id}>
-            {item.icon}
-            {item.text}
-          </MainChannelItem>
-        ))}
-      </MainChannels>
-      <ChannelsContainer>
-        <NewChannelContainer>
-          <div>Channels</div>
-          <Plus onClick={addChannel} />
-        </NewChannelContainer>
-        <ChannelsList>
-          {rooms.map((item) => {
-            return (
-              <Channel onClick={() => goToChannel(item.id)} key={item.id}>
-                # {item.name}
-              </Channel>
-            );
-          })}
-        </ChannelsList>
-      </ChannelsContainer>
+      <ControlChannel>
+        <MainChannels>
+          {sidebarItemsData.map((item, id) => (
+            <MainChannelItem key={id}>
+              {item.icon}
+              {item.text}
+            </MainChannelItem>
+          ))}
+        </MainChannels>
+        <ChannelsContainer>
+          <NewChannelContainer>
+            <div>Channels</div>
+            <Plus onClick={addChannel} />
+          </NewChannelContainer>
+          <ChannelsList>
+            {rooms.map((item) => {
+              return (
+                <Channel onClick={() => goToChannel(item.id)} key={item.id}>
+                  # {item.name}
+                </Channel>
+              );
+            })}
+          </ChannelsList>
+        </ChannelsContainer>
+      </ControlChannel>
     </Container>
   );
 }
@@ -68,6 +70,7 @@ export default Sidebar;
 
 const Container = styled.div`
   background: #016d7e;
+  display: grid;
 `;
 
 const WorkspaceContainer = styled.div`
@@ -116,6 +119,7 @@ const MainChannelItem = styled.div`
 const ChannelsContainer = styled.div`
   color: rgb(188, 171, 188);
   margin-top: 10px;
+  height: 100%;
 `;
 
 const NewChannelContainer = styled.div`
@@ -142,4 +146,9 @@ const Channel = styled.div`
 
 const Plus = styled(AddIcon)`
   cursor: pointer;
+`
+const ControlChannel = styled.div`
+  overflow: auto;
+  height: 100%;
+
 `
