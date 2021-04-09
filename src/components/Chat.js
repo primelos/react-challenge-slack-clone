@@ -28,11 +28,9 @@ function Chat({ user }) {
         db.collection("rooms").doc(channelId).collection('messages').orderBy('timeStamp', 'asc')
         .onSnapshot((snap => {
             let messages = snap.docs.map((doc) => doc.data())
-            console.log(messages);
             setMessages(messages);
         }))
     }
-    // console.log('F', firebase.firestore)
 
     const sendMessage = (text) => {
         if(channelId) {
@@ -43,27 +41,29 @@ function Chat({ user }) {
               userImage: user.photo,
             };
             db.collection('rooms').doc(channelId).collection('messages').add(payload)
-            console.log(payload);
+            console.log('payload', payload);
         }
     }
 
-
+    // console.log(messages);
     return (
       <Container>
         <ChatHeader channel={channel} />
         <MessageContainer>
             {
                 messages.length > 0 &&
-                messages.map((data, index) => (
+                messages.map((data, index) => {
                     
-                    <ChatMessage 
+                    return (
+                      <ChatMessage
+                        key={index}
                         text={data.text}
                         name={data.user}
                         image={data.userImage}
                         timeStamp={data.timeStamp}
-                    />
-
-                ))
+                      />
+                    );
+                })
             }
         </MessageContainer>
         <ChatInput sendMessage={sendMessage}/>

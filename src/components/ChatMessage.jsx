@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 const ChatMessage = ({ text, image, timeStamp, name }) => {
-  console.log(name);
+  // console.log(name);
   return (
     <Container>
       <UserAvatar>

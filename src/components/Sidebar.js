@@ -2,19 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { sidebarItemsData } from "../data/SidebarData";
-import { ChannelData } from "../data/ChannelData";
 import AddIcon from "@material-ui/icons/Add";
 import db from '../firebase'
 import { useHistory } from 'react-router-dom';
 
 
 function Sidebar({ rooms }) {
-  console.log('sidebar', rooms)
+  // console.log('sidebar', rooms)
   const history = useHistory()
 
   const goToChannel = (id) => {
     if(id) {
-      console.log(id);
+      // console.log(id);
       history.push(`/room/${id}`)
     }
   }
