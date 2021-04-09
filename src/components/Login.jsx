@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import ChatHeader from "./ChatHeader";
+import React from 'react'
 import styled from 'styled-components'
 import { auth, provider } from '../firebase'
 

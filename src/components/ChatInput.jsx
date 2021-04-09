@@ -11,16 +11,22 @@ const ChatInput = ({ sendMessage }) => {
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [openEmoji, setOpenEmoji] = useState(false);
   const [cursor, setCursor] = useState()
-
+  // const [primary, setPrimary] = useState()
 
   const onEmojiClick = (event, {emojiObject}) => {
-    const ref = inputRef.current
-    ref.focus()
-    
+    console.log(event)
+    // const ref = inputRef.current
+    // ref.focus()
+    // const start = input.substring(0, ref.selectionStart)
+    // const end = input.substring(ref.selectionStart)
+    // const text = start + emojiObject + end
+    // setInput(text)
+    // setCursor(start.length + emojiObject.length)
   };
 
   const openIcon = () => {
-
+    // inputRef.current.focus()
+    setOpenEmoji(!openEmoji)
   }
   const send = (e) => {
     e.preventDefault()
@@ -28,8 +34,12 @@ const ChatInput = ({ sendMessage }) => {
     sendMessage(input)
     setInput('')
   }
+  
+  // useEffect(() => {
+  //   inputRef.current.selectionEnd = cursor
+  // },[cursor])
 
-  console.log(Picker)
+  // console.log(Picker)
   return (
     <Container>
       <InputContainer>
@@ -41,30 +51,28 @@ const ChatInput = ({ sendMessage }) => {
             placeholder="Message here..."
           />
           <IconContainer>
-            <div>
-              <i class="fas fa-bolt fa-sm"></i>
-              <i class="fas fa-bold fa-sm"></i>
-              <i class="fas fa-italic fa-sm"></i>
-              <i class="fas fa-strikethrough fa-sm"></i>
-              <i class="fas fa-code fa-sm"></i>
-              <i class="fas fa-link fa-sm"></i>
-              <i class="fas fa-list-ol fa-sm"></i>
-              <i class="fas fa-list-ul fa-sm"></i>
-              <i class="fas fa-stream fa-sm"></i>
-              <i class="far fa-file-code fa-sm"></i>
+            <div style={{  cursor: 'pointer'
+}}>
+              <i className="fas fa-bolt fa-sm"></i>
+              <i className="fas fa-bold fa-sm"></i>
+              <i className="fas fa-italic fa-sm"></i>
+              <i className="fas fa-strikethrough fa-sm"></i>
+              <i className="fas fa-code fa-sm"></i>
+              <i className="fas fa-link fa-sm"></i>
+              <i className="fas fa-list-ol fa-sm"></i>
+              <i className="fas fa-list-ul fa-sm"></i>
+              <i className="fas fa-stream fa-sm"></i>
+              <i className="far fa-file-code fa-sm"></i>
             </div>
             <RightIcons>
-              <i class="fas fa-heading fa-sm"></i>
-              <i class="fas fa-at fa-sm"></i>
-              <i
-                class="far fa-smile fa-sm"
-                onClick={() => setOpenEmoji(!openEmoji)}
-              ></i>
-              <i class="fas fa-paperclip fa-sm fa-flip-horizontal"></i>
+              <i className="fas fa-heading fa-sm"></i>
+              <i className="fas fa-at fa-sm"></i>
+              <i className="far fa-smile fa-sm" onClick={openIcon}></i>
+              <i className="fas fa-paperclip fa-sm fa-flip-horizontal"></i>
               <EmojiContainer>
                 {openEmoji ? <Picker onEmojiClick={onEmojiClick} /> : null}
               </EmojiContainer>
-              <SendButton type="submit" onClick={send}>
+              <SendButton primary={input} type="submit" onClick={send}>
                 <SendIcon />
               </SendButton>
             </RightIcons>
@@ -74,6 +82,7 @@ const ChatInput = ({ sendMessage }) => {
     </Container>
   );
 }
+
 
 export default ChatInput
 
@@ -110,37 +119,40 @@ const InputContainer = styled.div`
   }
 `;
 
+
 const SendButton = styled.button`
-  background: #007a5a;
+  /* background: #007a5a; */
+  background: ${(props) => (props.primary ? "#007a5a" : "#f2f4f4")};
   border-radius: 2px;
   width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #D9D9D9;
+  color: ${(props) => (props.primary ? "#fff" : "#d9d9d9")};
   margin-right: 5px;
-  cursor: pointer;
+  cursor: ${(props) => (props.primary ? "pointer" : "null")};
   border: none;
 
   .MuiSvgIcon-root {
     width: 18px;
   }
   :hover {
-    background: #148567;
+    background: ${(props) => (props.primary ? "#148567" : "#f2f4f4")};
   }
 `;
 const IconContainer = styled.div`
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   padding-top: 1px;
   justify-content: space-between;
+  background: #f2f4f4;
 `;
 const RightIcons = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 `;
 const EmojiContainer = styled.div`
   width: 100%;

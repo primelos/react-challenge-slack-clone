@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const ChatHeader = ({ channel }) => {
 
@@ -14,7 +13,6 @@ const ChatHeader = ({ channel }) => {
               channel&& channel.name 
             }
             </ChannelName>
-          {/* <StarBorderIcon /> */}
           <ChannelInfo>
             Company-wide announcements and work-based matters
           </ChannelInfo>
